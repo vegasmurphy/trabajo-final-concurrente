@@ -104,7 +104,7 @@
     <message xmi:id="_l3GXYJYgEeKWOZq24u3Vhw" name="Monitor ocupado?" messageSort="asynchCall" receiveEvent="_l3G-cZYgEeKWOZq24u3Vhw" sendEvent="_l3G-cJYgEeKWOZq24u3Vhw"/>
     <message xmi:id="_vPRAoJYgEeKWOZq24u3Vhw" name="Solicitar recurso" messageSort="asynchCall" receiveEvent="_vPRnsJYgEeKWOZq24u3Vhw" sendEvent="_vPRAoZYgEeKWOZq24u3Vhw"/>
     <message xmi:id="_cT67gJYhEeKWOZq24u3Vhw" name="Espera" messageSort="asynchCall" receiveEvent="_cT8JoJYhEeKWOZq24u3Vhw" sendEvent="_cT7ikJYhEeKWOZq24u3Vhw"/>
-    <message xmi:id="_1KYewJYhEeKWOZq24u3Vhw" name="Esperar" messageSort="asynchCall" receiveEvent="_1KZs4JYhEeKWOZq24u3Vhw" sendEvent="_1KZF0JYhEeKWOZq24u3Vhw"/>
+    <message xmi:id="_1KYewJYhEeKWOZq24u3Vhw" name="4:Espera" messageSort="asynchCall" receiveEvent="_1KZs4JYhEeKWOZq24u3Vhw" sendEvent="_1KZF0JYhEeKWOZq24u3Vhw"/>
     <message xmi:id="_OR-OQJYiEeKWOZq24u3Vhw" name="Recurso disponible?" messageSort="asynchCall" receiveEvent="_OR-1UJYiEeKWOZq24u3Vhw" sendEvent="_OR-OQZYiEeKWOZq24u3Vhw"/>
     <message xmi:id="_cnAaIJYiEeKWOZq24u3Vhw" name="Esperar recurso" messageSort="asynchCall" receiveEvent="_cnBBMZYiEeKWOZq24u3Vhw" sendEvent="_cnBBMJYiEeKWOZq24u3Vhw"/>
     <message xmi:id="_kxZosJYiEeKWOZq24u3Vhw" name="Esperar recurso" receiveEvent="_kxaPwZYiEeKWOZq24u3Vhw" sendEvent="_kxaPwJYiEeKWOZq24u3Vhw"/>
