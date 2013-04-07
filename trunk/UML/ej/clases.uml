@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_6NfgEJ7kEeK-PelnNgAAtQ" name="classDiagram">
+  <packagedElement xmi:type="uml:Class" xmi:id="_8xREYJ7kEeK-PelnNgAAtQ" name="Servidor">
+    <ownedAttribute xmi:id="_cbSy4J71EeK-PelnNgAAtQ" name="rxServidor" visibility="private" type="_LxsWoJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dIAu8J71EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dIBWAJ71EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_dIDyQJ71EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_d4X04J71EeK-PelnNgAAtQ" name="txServidor" visibility="private" type="_KzbXkJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fpIn4J71EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fpLEIJ71EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_fpOugJ71EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_KaY8wJ72EeK-PelnNgAAtQ" name="Property1" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LHkL0J72EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LHmoEJ72EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_LHprYJ72EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_t6kioJ70EeK-PelnNgAAtQ" name="run" visibility="public"/>
+    <ownedOperation xmi:id="_uOPskJ70EeK-PelnNgAAtQ" name="solicitarDatos" visibility="private"/>
+    <ownedOperation xmi:id="_ul27UJ70EeK-PelnNgAAtQ" name="analizarImpacto" visibility="private"/>
+    <ownedOperation xmi:id="_vCqzIJ70EeK-PelnNgAAtQ" name="determinarImpacto" visibility="private"/>
+    <ownedOperation xmi:id="_SNSt0J71EeK-PelnNgAAtQ" name="extraerDatos" visibility="private"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EWyEQJ7lEeK-PelnNgAAtQ" name="Monitor">
+    <ownedAttribute xmi:id="_lpnfcJ78EeK-PelnNgAAtQ" name="estadoInicial" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mlt7UJ78EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mluiYJ78EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_mlxlsJ78EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_l9v8YJ78EeK-PelnNgAAtQ" name="matrizSur" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nJgk4J78EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nJiaEJ78EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_nJmrgJ78EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_n4bgYJ78EeK-PelnNgAAtQ" name="matrizNorte" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oo3e0J78EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oo4s8J78EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_oo8XUJ78EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_yh5HgJ7-EeK-PelnNgAAtQ" name="matrizOeste" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0CDSsJ7-EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0CFH4J7-EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_0CJZUJ7-EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_0KIQoJ7-EeK-PelnNgAAtQ" name="matrizEste" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2se4oJ7-EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2sgGwJ7-EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_2sjKEJ7-EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_HCBigJ7lEeK-PelnNgAAtQ" name="Radar">
+    <ownedAttribute xmi:id="_H-n7YJ7qEeK-PelnNgAAtQ" name="misil_enemigo" visibility="public" type="_lTk1cJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JUGgkJ7qEeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JUHHoJ7qEeK-PelnNgAAtQ" value="*"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_JUKK8J7qEeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_EDhQYJ7tEeK-PelnNgAAtQ" name="misil_defensivo" visibility="private" type="_yIboAJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EyWFQJ7tEeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EyYhgJ7tEeK-PelnNgAAtQ" value="*"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_Eya9wJ7tEeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_PQjJgJ7tEeK-PelnNgAAtQ" name="rx_radar" visibility="private" type="_LxsWoJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_P5exwJ7tEeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P5gm8J7tEeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_P5jqQJ7tEeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_gzyhUJ7uEeK-PelnNgAAtQ" name="tx_radar" visibility="private" type="_KzbXkJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hUezkJ7uEeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hUfaoJ7uEeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_hUhP0J7uEeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_mAnPsJ7nEeK-PelnNgAAtQ" name="run"/>
+    <ownedOperation xmi:id="_7WCQ8J7uEeK-PelnNgAAtQ" name="actualizarPosiciones" visibility="private"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_FoKvcJ7sEeK-PelnNgAAtQ" name="INTEGER"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KzbXkJ7lEeK-PelnNgAAtQ" name="Tx">
+    <ownedAttribute xmi:id="_jgEyUJ73EeK-PelnNgAAtQ" name="buffer" visibility="private" type="_MoFzIJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kbOL8J73EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kbPaEJ73EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_kbR2UJ73EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_6Uf6cJ75EeK-PelnNgAAtQ" name="run" visibility="public"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LxsWoJ7lEeK-PelnNgAAtQ" name="Rx">
+    <ownedAttribute xmi:id="_KQSW0J78EeK-PelnNgAAtQ" name="buffer" visibility="private" type="_MoFzIJ7lEeK-PelnNgAAtQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Of_4gJ78EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OgBtsJ78EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_OgF_IJ78EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_9cWcMJ75EeK-PelnNgAAtQ" name="run"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MoFzIJ7lEeK-PelnNgAAtQ" name="Buffer">
+    <ownedAttribute xmi:id="_QBkD0J76EeK-PelnNgAAtQ" name="listaBuffer" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QzKf4J76EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QzM8IJ76EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_QzQmgJ76EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="__l7NQJ74EeK-PelnNgAAtQ" name="ponerDato" visibility="public"/>
+    <ownedOperation xmi:id="__-XicJ74EeK-PelnNgAAtQ" name="sacarDato"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NgezsJ7lEeK-PelnNgAAtQ" name="HiloMisilDef"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_lTk1cJ7lEeK-PelnNgAAtQ" name="MisilEnemigo">
+    <generalization xmi:id="_r82aEJ7mEeK-PelnNgAAtQ" general="_2Rg9QJ7lEeK-PelnNgAAtQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yIboAJ7lEeK-PelnNgAAtQ" name="MisilDefensivo">
+    <generalization xmi:id="_n7xxUJ7mEeK-PelnNgAAtQ" general="_2Rg9QJ7lEeK-PelnNgAAtQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2Rg9QJ7lEeK-PelnNgAAtQ" name="Misil">
+    <ownedAttribute xmi:id="_1hD5QJ78EeK-PelnNgAAtQ" name="posInicial" visibility="private"/>
+    <ownedAttribute xmi:id="_11KhAJ78EeK-PelnNgAAtQ" name="vecVelocidad" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2GwnUJ78EeK-PelnNgAAtQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Gx1cJ78EeK-PelnNgAAtQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_2G0RsJ78EeK-PelnNgAAtQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_OgEUgJ79EeK-PelnNgAAtQ" name="incrementarPosicion"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vYPJkJ7rEeK-PelnNgAAtQ" name="int" visibility="private"/>
+</uml:Model>
