@@ -1,5 +1,9 @@
 
 public class MisilDefensivo extends Misil {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private Vector destinoFinal,interseccion;
 private int etapaTray;
 private Vector trayectoria2,trayectoria3;	
