@@ -1,5 +1,11 @@
+import java.io.Serializable;
 
-public abstract class Misil {
+
+public abstract class Misil implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Vector posicion;
 	private Vector velocidadInicial;
 	
