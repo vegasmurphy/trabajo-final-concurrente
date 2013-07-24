@@ -4,6 +4,8 @@ import java.net.*;
 
 import java.io.*;
 
+import Misiles.Misil;
+
 public class Receptor extends Thread {
 	private ObjectInputStream ois;
 	private InputStream is;
@@ -14,9 +16,9 @@ public class Receptor extends Thread {
 	
 	public void run(){
 		while(true){
-			Object elemento = null;
+			Misil elemento = null;
 		try {
-			elemento = ois.readObject();
+			elemento = (Misil) ois.readObject();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
