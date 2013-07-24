@@ -5,7 +5,7 @@ public class MisilEnemigo extends Misil {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	public MisilEnemigo(Vector posicion, Vector velocidad) {
 		super(posicion, velocidad);

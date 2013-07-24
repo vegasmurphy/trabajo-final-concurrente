@@ -4,6 +4,8 @@ import java.net.*;
 
 import java.io.*;
 
+import Misiles.Misil;
+
 public class Transmisor extends Thread {
 	private ObjectOutputStream oos;
 	private OutputStream os;
@@ -14,10 +16,10 @@ public class Transmisor extends Thread {
 	
 	public void run(){
 		while(true){
-		Object elemento = null;
+		Misil elemento = null;
 		try {
 			
-			elemento=buffer.take();
+			elemento=(Misil) buffer.take();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
