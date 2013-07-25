@@ -15,7 +15,7 @@ MisilEnemigo misil;
 
 	
 	try {    
-Socket s = new Socket("localhost",9001);  
+Socket s = new Socket("localhost",9000);  
 System.out.println("connected client");
 receptor=new Receptor(colaRecibidos,s);
 receptor.start();

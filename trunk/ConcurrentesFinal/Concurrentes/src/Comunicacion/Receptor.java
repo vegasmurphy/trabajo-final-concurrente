@@ -52,6 +52,7 @@ public class Receptor extends Thread {
 			ois = new ObjectInputStream(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
