@@ -1,6 +1,12 @@
 package Misiles;
 
-public class Vector {
+import java.io.Serializable;
+
+public class Vector implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
 double x;
 double y;
 double z;
