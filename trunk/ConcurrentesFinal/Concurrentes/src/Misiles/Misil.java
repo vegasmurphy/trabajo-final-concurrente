@@ -13,10 +13,11 @@ public abstract class Misil implements Serializable{
 	
 	
 
-	public Misil(Vector posicion, Vector velocidad) {
+	public Misil(Vector posicion, Vector velocidad,int ID) {
 		super();
 		this.posicion = posicion;
 		this.velocidadInicial = velocidad;
+		this.ID=ID;
 	}
 
 
@@ -51,5 +52,19 @@ public abstract class Misil implements Serializable{
 
 
 	public abstract void avanzar();
+
+
+
+
+	public int getID() {
+		return ID;
+	}
+
+
+
+
+	public void setID(int iD) {
+		ID = iD;
+	}
 	
 }

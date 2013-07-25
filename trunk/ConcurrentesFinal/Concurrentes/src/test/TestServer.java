@@ -24,7 +24,7 @@ System.out.println("connected");
 trans=new Transmisor(colaEnviar,s);
 rec=new Receptor(colaRec,s1);
 
-	misil=new MisilEnemigo(new Vector (0,0,0),new Vector (1,1,1));
+	misil=new MisilEnemigo(new Vector (0,0,0),new Vector (1,1,1),1);
 	colaEnviar.put(misil);
 	trans.start();
 	rec.start();

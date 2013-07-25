@@ -23,7 +23,7 @@ System.out.println("connected client");
 receptor=new Receptor(colaRecibidos,s);
 transmisor=new Transmisor(colaEnviar,s1);
 receptor.start();
-colaEnviar.put(new MisilEnemigo(new Vector(1,1,1),new Vector(1,2,3)));
+colaEnviar.put(new MisilEnemigo(new Vector(1,1,1),new Vector(1,2,3),0));
 transmisor.start();
 while(true){
 	misil=(MisilEnemigo)colaRecibidos.take();

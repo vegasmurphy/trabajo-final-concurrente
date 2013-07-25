@@ -10,8 +10,8 @@ private int etapaTray;
 private Vector trayectoria2,trayectoria3;	
 
 
-	public MisilDefensivo(Vector posicion, Vector velocidad,Vector tray2,Vector tray3,Vector dest,Vector interseccion) {
-	super(posicion, velocidad);
+	public MisilDefensivo(Vector posicion, Vector velocidad,int ID,Vector tray2,Vector tray3,Vector dest,Vector interseccion) {
+	super(posicion, velocidad, ID);
 	this.destinoFinal=dest;
 	this.interseccion=interseccion;
 	trayectoria2=tray2;
