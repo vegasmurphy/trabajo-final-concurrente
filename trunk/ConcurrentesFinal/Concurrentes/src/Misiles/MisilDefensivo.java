@@ -25,10 +25,10 @@ private Vector trayectoria2,trayectoria3;
 	public void avanzar() {
 		// TODO Auto-generated method stub
 		if(etapaTray==0){
-			if(this.getPosicion().getX()<100){
-				posicion.sumarVector(this.getVelocidad());}
+			if(getPosicion().getX()<100){
+				posicion.sumarVector(getVelocidad());}
 			else{
-				this.posicion.setX(100);
+				posicion.setX(100);
 				setEtapaTray(1);
 			}
 			}
@@ -36,7 +36,7 @@ private Vector trayectoria2,trayectoria3;
 			if (etapaTray==1){
 				if(posicion.compararVector(interseccion, 1)){
 					etapaTray=2;
-					this.setPosicion(interseccion);
+					setPosicion(interseccion);
 					
 				}
 				else{
