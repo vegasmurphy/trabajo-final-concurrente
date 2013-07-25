@@ -28,6 +28,7 @@ trans=new Transmisor(colaEnviar,s);
 	colaEnviar.put(misil);
 	trans.start();
 	
+	
 
 
 }catch(Exception e){System.out.println(e);}  
