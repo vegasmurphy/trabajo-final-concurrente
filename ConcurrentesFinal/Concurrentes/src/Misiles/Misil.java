@@ -9,7 +9,7 @@ public abstract class Misil implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected Vector posicion;
 	private Vector velocidadInicial;
-	
+	private int ID;
 	
 	
 

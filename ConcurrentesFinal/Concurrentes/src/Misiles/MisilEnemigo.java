@@ -14,8 +14,8 @@ public class MisilEnemigo extends Misil {
 
 	@Override
 	public void avanzar() {
-		Vector posNueva = this.getPosicion();
-		posNueva.sumarVector(this.getVelocidad());	
+		Vector posNueva = getPosicion();
+		posNueva.sumarVector(getVelocidad());	
 		this.setPosicion(posNueva);
 	}
 
