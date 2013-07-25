@@ -25,16 +25,16 @@ private Vector trayectoria2,trayectoria3;
 	public void avanzar() {
 		// TODO Auto-generated method stub
 		if(etapaTray==0){
-			if(getPosicion().getX()<100){
+			if(getPosicion().getZ()<100){
 				posicion.sumarVector(getVelocidad());}
 			else{
-				posicion.setX(100);
+				posicion.setZ(100);
 				setEtapaTray(1);
 			}
 			}
 		else{
 			if (etapaTray==1){
-				if(posicion.compararVector(interseccion, 1)){
+				if(posicion.compararVector(interseccion, 100)){
 					etapaTray=2;
 					setPosicion(interseccion);
 					
