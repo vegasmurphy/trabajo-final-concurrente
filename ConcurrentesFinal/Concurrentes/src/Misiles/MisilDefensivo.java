@@ -29,11 +29,13 @@ private Vector trayectoria2,trayectoria3;
 				posicion.sumarVector(getVelocidad());}
 			else{
 				posicion.setZ(100);
-				setEtapaTray(1);
+				etapaTray=1;
 			}
 			}
 		else{
 			if (etapaTray==1){
+				posicion.imprimir();
+				trayectoria2.imprimir();
 				if(posicion.compararVector(interseccion, 100)){
 					etapaTray=2;
 					setPosicion(interseccion);

@@ -19,18 +19,24 @@ public class AnalizadorTrayectoria {
 	}
 	public Vector DeterminarPuntoInterseccion(MisilEnemigo misil){
 		
-		Vector puntoB=misil.getPosicion();
-		puntoB.sumarVector(misil.getVelocidad());
-		
+		Vector puntoB=Vector.sumarVector(misil.getPosicion(),misil.getVelocidad());
+		puntoB.imprimir();
+		misil.getPosicion().imprimir();
 		List<Vector> puntos = CircleLine.getCircleLineIntersectionPoint(misil.getPosicion(), puntoB, new Vector(0,0,0), 10000);
 		Vector intA,intB;
+		
+		
 		intA=puntos.get(0);
 		intB=puntos.get(1);
+		intA.imprimir();
+		intB.imprimir();
 		if(intA.distancia(puntoB)<intB.distancia(puntoB)){
+			intA.imprimir();
 			return intA;
 			
 		}
 		else{
+			intB.imprimir();
 			return intB;
 			
 		}
