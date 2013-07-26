@@ -35,7 +35,7 @@ public class TestTrayectoriaMisiles {
 //		}
 		AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
 		MisilDefensivo misilDef;
-		MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(50000,50000,100),new Vector(-100,-100,0),2);
+		MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(50000,50000,5000),new Vector(-100,-100,-10),2);
 		misilDef=analizador.generarMisilDefensivo(misilEnemigo, new Vector(0,0,0));
 		misilEnemigo.getPosicion().imprimir();
 		misilDef.getPosicion().imprimir();
