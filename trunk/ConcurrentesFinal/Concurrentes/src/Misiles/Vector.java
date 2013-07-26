@@ -19,6 +19,11 @@ public void restarVector(Vector b){
 	
 	
 }
+
+public void imprimir(){
+	System.out.println("Vector:"+x+","+y+","+z);
+	
+}
 public double distancia(Vector b){
 	double sum;
 	sum=0;
@@ -57,7 +62,8 @@ public boolean compararVector(Vector b,double dist){
 	sum+=(z-b.getZ())*(z-b.getZ());
 	sum=java.lang.Math.sqrt(sum);
 	if(sum<dist){return true;}
-	else{return false;}
+	else{imprimir();
+		return false;}
 }
 //compara si dos vectores se encuentran en una distancia entre si
 public boolean compararVector(Vector a,Vector b,double distancia){
@@ -69,7 +75,10 @@ public void sumarVector(Vector b){//suma el vector actual con el vector pasado c
 	y+=b.getY();
 	z+=b.getZ();
 }
-
+public static Vector sumarVector(Vector a,Vector b){
+	Vector vector=new Vector(a.getX()+b.getX(),a.getY()+b.getY(),a.getZ()+b.getZ());
+	return vector;
+}
 public double getX() {
 	return x;
 }
