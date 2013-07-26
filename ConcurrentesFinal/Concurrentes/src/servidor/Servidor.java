@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.net.*;
 import Comunicacion.*;
 import Misiles.*;
+import Monitor.HiloMisilDefensivo;
+import Monitor.Monitor;
 
 
 public class Servidor {
@@ -13,12 +15,13 @@ private static Transmisor transmisor;
 private static Receptor receptor;
 private static int port=9000;
 private static ServerSocket ss;
-
+private static Monitor monitor;
 /**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		monitor=new Monitor();
 		initServer();
 		MisilEnemigo misilNuevo = null;
 		while(true){
@@ -38,6 +41,8 @@ private static ServerSocket ss;
 	//analizar el impacto del misil
 	//crear hiloMisilDefensivo
 	//
+		HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,monitor,Tx);
+		hiloDefensivo.start();
 }
 
 	private static void initServer(){
