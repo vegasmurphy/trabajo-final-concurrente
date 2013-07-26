@@ -1,4 +1,6 @@
 package servidor;
+import java.util.List;
+
 import Misiles.*;
 public class AnalizadorTrayectoria {
 	
@@ -8,28 +10,43 @@ public class AnalizadorTrayectoria {
 		 * 
 		 * 
 		 */
-		
-		
+		double z=misil.getPosicion().getZ();
+		double Vz=misil.getVelocidad().getZ();
+		double iteraciones=z/Vz;
+		puntoImpacto=new Vector(misil.getPosicion().getX()+misil.getVelocidad().getX()*iteraciones,misil.getPosicion().getY()+misil.getVelocidad().getY()*iteraciones,0);
 		return puntoImpacto;
 		
 	}
 	public Vector DeterminarPuntoInterseccion(MisilEnemigo misil){
-		Vector Interseccion = null;
-		/*Calcular aqui el punto de interseccion con el cilindro que representa el area protegida
-		 * 
-		 * 
-		 */
-		return Interseccion;
+		
+		Vector puntoB=misil.getPosicion();
+		puntoB.sumarVector(misil.getVelocidad());
+		
+		List<Vector> puntos = CircleLine.getCircleLineIntersectionPoint(misil.getPosicion(), puntoB, new Vector(0,0,0), 10000);
+		Vector intA,intB;
+		intA=puntos.get(0);
+		intB=puntos.get(1);
+		if(intA.distancia(puntoB)<intB.distancia(puntoB)){
+			return intA;
+			
+		}
+		else{
+			return intB;
+			
+		}
 		
 	}
 	
 	public Vector CalcularTrayectoria(Vector posInicial,Vector posFinal){
 		Vector vecVelocidad=null;
 		/*En base a un punto inicial y final se calculo el vector velocidad necesario para llegar al destino
-		 * 
+		 * Con una velocidad de 100m/s
 		 * 
 		 */
-		
+		vecVelocidad=posFinal;
+		vecVelocidad.restarVector(posInicial);
+		vecVelocidad.divisionEscalar(vecVelocidad.Modulo());
+		vecVelocidad.productoEscalar(100);
 		return vecVelocidad;
 		
 	}
