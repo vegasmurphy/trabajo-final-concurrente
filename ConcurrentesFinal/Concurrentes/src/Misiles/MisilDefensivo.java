@@ -16,6 +16,12 @@ private Vector trayectoria2,trayectoria3;
 	this.interseccion=interseccion;
 	trayectoria2=tray2;
 	trayectoria3=tray3;
+	System.out.println("interseccion:");
+	interseccion.imprimir();
+	System.out.println("tray2");
+	trayectoria2.imprimir();
+	System.out.println("tray3");
+	trayectoria3.imprimir();
 	// TODO Auto-generated constructor stub
 }
 
@@ -30,19 +36,23 @@ private Vector trayectoria2,trayectoria3;
 			else{
 				posicion.setZ(100);
 				etapaTray=1;
+				setVelocidad(trayectoria2);
+				System.out.println("Termino etapa 0");
 			}
 			}
 		else{
 			if (etapaTray==1){
-				posicion.imprimir();
-				trayectoria2.imprimir();
+				//posicion.imprimir();
+				//trayectoria2.imprimir();
+				interseccion.imprimir();
 				if(posicion.compararVector(interseccion, 100)){
 					etapaTray=2;
 					setPosicion(interseccion);
-					
+					setVelocidad(trayectoria3);
+					System.out.println("termino etapa 1");
 				}
 				else{
-					posicion.sumarVector(trayectoria2);
+					posicion.sumarVector(getVelocidad());
 					
 					
 				}
@@ -50,7 +60,7 @@ private Vector trayectoria2,trayectoria3;
 				
 			}
 			else{
-				posicion.sumarVector(trayectoria3);
+				posicion.sumarVector(getVelocidad());
 				
 				
 			}

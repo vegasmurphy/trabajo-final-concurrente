@@ -20,23 +20,23 @@ public class AnalizadorTrayectoria {
 	public Vector DeterminarPuntoInterseccion(MisilEnemigo misil){
 		
 		Vector puntoB=Vector.sumarVector(misil.getPosicion(),misil.getVelocidad());
-		puntoB.imprimir();
-		misil.getPosicion().imprimir();
+		//puntoB.imprimir();
+		//misil.getPosicion().imprimir();
 		List<Vector> puntos = CircleLine.getCircleLineIntersectionPoint(misil.getPosicion(), puntoB, new Vector(0,0,0), 10000);
 		Vector intA,intB;
 		
 		
 		intA=puntos.get(0);
 		intB=puntos.get(1);
-		intA.imprimir();
-		intB.imprimir();
+		//intA.imprimir();
+		//intB.imprimir();
 		if(intA.distancia(puntoB)<intB.distancia(puntoB)){
-			intA.imprimir();
+			//intA.imprimir();
 			return intA;
 			
 		}
 		else{
-			intB.imprimir();
+			//intB.imprimir();
 			return intB;
 			
 		}
@@ -49,8 +49,8 @@ public class AnalizadorTrayectoria {
 		 * Con una velocidad de 100m/s
 		 * 
 		 */
-		vecVelocidad=posFinal;
-		vecVelocidad.restarVector(posInicial);
+		vecVelocidad=Vector.restar(posFinal,posInicial);
+		//vecVelocidad.restarVector(posInicial);
 		vecVelocidad.divisionEscalar(vecVelocidad.Modulo());
 		vecVelocidad.productoEscalar(100);
 		return vecVelocidad;
