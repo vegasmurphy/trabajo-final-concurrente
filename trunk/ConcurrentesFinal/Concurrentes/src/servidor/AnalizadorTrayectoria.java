@@ -56,6 +56,15 @@ public class AnalizadorTrayectoria {
 		return vecVelocidad;
 		
 	}
-	
+	public MisilDefensivo generarMisilDefensivo(MisilEnemigo misil,Vector posInicial){
+		MisilDefensivo misilDef=null;
+		Vector interseccion=DeterminarPuntoInterseccion(misil);
+		Vector puntoIntermedio=new Vector(posInicial.getX(),posInicial.getY(),100);
+		Vector tray1=CalcularTrayectoria(puntoIntermedio,interseccion);
+		Vector tray2=CalcularTrayectoria(interseccion,misil.getPosicion());
+		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,100), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);
+		return misilDef;
+		
+	}
 	
 }

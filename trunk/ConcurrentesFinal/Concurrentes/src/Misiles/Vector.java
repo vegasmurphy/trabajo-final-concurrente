@@ -73,7 +73,7 @@ public static Vector restar(Vector a,Vector b){
 
 
 //compara si dos vectores se encuentran en una distancia entre si
-public boolean compararVector(Vector a,Vector b,double distancia){
+public static boolean compararVector(Vector a,Vector b,double distancia){
 	return a.compararVector(b, distancia);
 	
 }
