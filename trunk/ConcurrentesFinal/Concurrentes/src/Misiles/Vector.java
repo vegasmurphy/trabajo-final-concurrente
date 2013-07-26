@@ -65,6 +65,13 @@ public boolean compararVector(Vector b,double dist){
 	else{imprimir();
 		return false;}
 }
+public static Vector restar(Vector a,Vector b){
+	Vector vector;
+	vector=new Vector(a.getX()-b.getX(),a.getY()-b.getY(),a.getZ()-b.getZ());
+	return vector;
+}
+
+
 //compara si dos vectores se encuentran en una distancia entre si
 public boolean compararVector(Vector a,Vector b,double distancia){
 	return a.compararVector(b, distancia);
