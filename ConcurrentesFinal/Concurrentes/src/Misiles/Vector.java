@@ -11,7 +11,43 @@ double x;
 double y;
 double z;
 
-
+public void restarVector(Vector b){
+	x-=b.getX();
+	y-=b.getY();
+	z-=b.getZ();
+	
+	
+	
+}
+public double distancia(Vector b){
+	double sum;
+	sum=0;
+	sum+=(x-b.getX())*(x-b.getX());
+	sum+=(y-b.getY())*(y-b.getY());
+	sum+=(z-b.getZ())*(z-b.getZ());
+	sum=java.lang.Math.sqrt(sum);
+	return sum;
+}
+public void productoEscalar(double escalar){
+	x=x*escalar;
+	y=y*escalar;
+	z=z*escalar;
+	
+}
+public void divisionEscalar(double escalar){
+	x=x/escalar;
+	y=y/escalar;
+	z=z/escalar;
+	
+}
+public double Modulo(){
+	double sum=0;
+	sum=(x*x)+(y*y)+(z*z);
+	sum=java.lang.Math.sqrt(sum);
+	return sum;
+	
+	
+}
 //devuelve verdadero si se encuentra en una distancia determinada del otro punto 
 public boolean compararVector(Vector b,double dist){
 	double sum;
