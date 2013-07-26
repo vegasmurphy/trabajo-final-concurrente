@@ -94,5 +94,8 @@ public Vector(double x, double y, double z) {
 	this.y = y;
 	this.z = z;
 }
+public Vector() {
+	// TODO Auto-generated constructor stub
+}
 
 }
