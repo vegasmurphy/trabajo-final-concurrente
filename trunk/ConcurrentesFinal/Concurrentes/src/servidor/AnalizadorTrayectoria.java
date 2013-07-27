@@ -12,7 +12,7 @@ public class AnalizadorTrayectoria {
 		 */
 		double z=misil.getPosicion().getZ();
 		double Vz=misil.getVelocidad().getZ();
-		double iteraciones=z/Vz;
+		double iteraciones=Math.abs(z/Vz);
 		puntoImpacto=new Vector(misil.getPosicion().getX()+misil.getVelocidad().getX()*iteraciones,misil.getPosicion().getY()+misil.getVelocidad().getY()*iteraciones,0);
 		return puntoImpacto;
 		
