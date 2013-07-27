@@ -1,13 +1,15 @@
 package radar;
 
-import java.util.ArrayList;
+
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import Misiles.Vector;
 import Misiles.MisilEnemigo;
 
 public class GeneradorDeMisiles extends Thread
 {
-	private ArrayList<MisilEnemigo> misiles;
+	private CopyOnWriteArrayList<MisilEnemigo> misiles;
 	private Random rand;
 	private long frecuencia;
 	private int ID;
@@ -15,7 +17,7 @@ public class GeneradorDeMisiles extends Thread
 	 * Constructor. Inicia la lista de objetos y el generador de valores aleatorios
 	 * @param misiles es una lista que contiene objetos de tipo MisilEnemigo.
 	 * */
-	public GeneradorDeMisiles(ArrayList<MisilEnemigo> misiles, long frecuencia)
+	public GeneradorDeMisiles(CopyOnWriteArrayList<MisilEnemigo> misiles, long frecuencia)
 	{
 		this.misiles = misiles;
 		this.frecuencia = frecuencia;
@@ -24,7 +26,7 @@ public class GeneradorDeMisiles extends Thread
 	}
 	
 	/* El metodo run crea un objeto MisilEnemigo, con su posicion inicial y velocidad, y lo almacena en la lista 'misiles'
-	 * Duerme un tiempo determinado*/
+	 * Duerme un tiempo especificado por el valor del campo 'frecuencia'*/
 	public void run()
 	{
 		while(true)
@@ -33,7 +35,7 @@ public class GeneradorDeMisiles extends Thread
 			Vector velocidad = new Vector();
 			setPosicionInicial(posicion);
 			setVelocidad(velocidad, posicion);
-			System.out.println("Misil --> Posicion inicial " + posicion.getX() +"  "+ posicion.getY() +"  " + posicion.getZ() +
+			System.out.println("Misil "+ "ID : " + ID +"\n--> Posicion inicial " + posicion.getX() +"  "+ posicion.getY() +"  " + posicion.getZ() +
 							   "\n          Velocidad " + velocidad.getX() + "  " + velocidad.getY()+ "  " +velocidad.getZ());
 			misiles.add(new MisilEnemigo(posicion, velocidad, ID));
 			ID++;
@@ -93,10 +95,15 @@ public class GeneradorDeMisiles extends Thread
 		velocY = impactoY - posicion.getY();
 		velocZ = - posicion.getZ();
 		
-		modulo = (Math.sqrt(Math.pow(velocX,2) + Math.pow(velocY,2) + Math.pow(velocZ,2))) / (80 + 40 * rand.nextDouble());
+		modulo = (Math.sqrt(Math.pow(velocX,2) + Math.pow(velocY,2) + Math.pow(velocZ,2))) / (8 + 4 * rand.nextDouble());
 		
 		velocidad.setX( velocX / modulo );
 		velocidad.setY( velocY / modulo );
 		velocidad.setZ( velocZ / modulo );
+	}
+	
+	public int getID()
+	{
+		return ID;
 	}
 }
