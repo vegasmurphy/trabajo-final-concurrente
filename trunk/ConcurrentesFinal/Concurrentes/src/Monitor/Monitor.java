@@ -2,18 +2,24 @@ package Monitor;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.concurrent.locks.Lock;
 
 import Misiles.MisilEnemigo;
 import Misiles.Vector;
 
 public class Monitor {
-
-	private double[][] matrix=new double[9][8];
+	private Lock accesoMonitor;
 	
+	private double[][] matrix=new double[9][8];
+	private double [][] marcados=new double[9][1];
 	public Monitor(){
-		cargarMatrixPetri(matrix);
+		cargarMatrixPetri(matrix,"C:\\Users\\vegas\\workspace\\Concurrentes\\bin\\test\\textfile.txt");
 		Matrix matriz=new Matrix(matrix);
+				
+		cargarMatrixPetri(marcados,"C:\\Users\\vegas\\workspace\\Concurrentes\\bin\\test\\Marcado.txt");
+		Matrix marcadosM=new Matrix(marcados);
 		matriz.show();
+		marcadosM.show();
 	}
 	
 	public Vector obtenerRecurso(MisilEnemigo misilEnemigo){
@@ -26,12 +32,13 @@ public class Monitor {
 		
 	}
 
-void cargarMatrixPetri(double[][] matrix){
+
+void cargarMatrixPetri(double[][] matrix,String s){
 	int i=0; 
 	int j=0;
 	try{
 
-		    BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vegas\\workspace\\Concurrentes\\bin\\test\\textfile.txt"));
+		    BufferedReader br = new BufferedReader(new FileReader(s));
 		    String strLine;
 		    //Read File Line By Line
 		    while ((strLine = br.readLine()) != null)   {
