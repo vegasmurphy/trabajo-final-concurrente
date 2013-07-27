@@ -9,8 +9,15 @@ public class Buffer {
    final Condition notEmpty = lock.newCondition(); 
 
    final Object[] items = new Object[100];
-   int putptr=0, takeptr=0, count;
-
+   int putptr=0, takeptr=0, count=0;
+   
+   public boolean isEmpty(){
+	   if(count==0){
+		   return true;
+	   }
+	   else{return false;}
+	   
+   }
    public void put(Object x) throws InterruptedException {
      lock.lock();
      try {
