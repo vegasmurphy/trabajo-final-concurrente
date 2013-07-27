@@ -52,7 +52,7 @@ public class AnalizadorTrayectoria {
 		vecVelocidad=Vector.restar(posFinal,posInicial);
 		//vecVelocidad.restarVector(posInicial);
 		vecVelocidad.divisionEscalar(vecVelocidad.Modulo());
-		vecVelocidad.productoEscalar(100);
+		vecVelocidad.productoEscalar(10);
 		return vecVelocidad;
 		
 	}
@@ -67,7 +67,7 @@ public class AnalizadorTrayectoria {
 		interseccion.imprimir();
 		Vector tray1=CalcularTrayectoria(puntoIntermedio,interseccion);
 		Vector tray2=CalcularTrayectoria(interseccion,misil.getPosicion());
-		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,100), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);
+		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,10), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);
 		return misilDef;
 		
 	}
