@@ -11,8 +11,8 @@ public class HiloMisilDefensivo extends Thread {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		Vector posicion=monitor.obtenerRecurso(misilAtacante);
-		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,posicion);
+		//Vector posicion=monitor.obtenerRecurso(misilAtacante);
+		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,new Vector(0,0,0));
 		try {
 			enviar.put(misilDef);
 		} catch (InterruptedException e) {

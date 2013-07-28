@@ -7,26 +7,31 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import Misiles.Misil;
+import Misiles.MisilDefensivo;
 import Misiles.MisilEnemigo;
-import Misiles.Vector;
+
 
 
 public class Board extends JPanel implements ActionListener {
 
-    private Timer timer;
-    private MisilEnemigo craft;
-    private ArrayList<Misil> misiles;
-    public Board(ArrayList<Misil> misiles2) {
-    	this.misiles=misiles2;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Timer timer;
+   // private MisilEnemigo craft;
+    private CopyOnWriteArrayList<MisilEnemigo> misilesEnemigos;
+    private CopyOnWriteArrayList<MisilDefensivo> misilesDefensivos;
+    public Board(CopyOnWriteArrayList<MisilEnemigo> misilesEnemigos,CopyOnWriteArrayList<MisilDefensivo> misilesDefensivos) {
+    	this.misilesEnemigos=misilesEnemigos;
+    	this.misilesDefensivos=misilesDefensivos;
        // addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
@@ -45,12 +50,17 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D)g;
        // g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
        g2d.setColor(Color.red);
-       for(Misil craft:misiles){
+       for(Misil craft:misilesEnemigos){
        //Misil craft=misiles[0];
        g2d.drawLine((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)),(int)(251-(craft.getPosicion().getX()/200)),(int)(251-(craft.getPosicion().getY()/200)));
        }
        g2d.drawOval(200, 200, 100, 100);
        g2d.setColor(Color.blue);
+       for(MisilDefensivo craft:misilesDefensivos){
+           g2d.drawLine((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)),(int)(251-(craft.getPosicion().getX()/200)),(int)(251-(craft.getPosicion().getY()/200)));
+
+    	   
+       }
        g2d.drawOval(0, 0, 500, 500);
         //g2d.drawLine(50, 50, 100, 100);
        // ArrayList ms = craft.getMissiles();
