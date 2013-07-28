@@ -62,7 +62,7 @@ public boolean compararVector(Vector b,double dist){
 	sum+=(z-b.getZ())*(z-b.getZ());
 	sum=java.lang.Math.sqrt(sum);
 	if(sum<dist){return true;}
-	else{imprimir();
+	else{//imprimir();
 		return false;}
 }
 public static Vector restar(Vector a,Vector b){
