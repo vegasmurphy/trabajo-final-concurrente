@@ -24,9 +24,9 @@ public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private MisilEnemigo craft;
-    private Misil[] misiles;
-    public Board(Misil[] misiles) {
-    	this.misiles=misiles;
+    private ArrayList<Misil> misiles;
+    public Board(ArrayList<Misil> misiles2) {
+    	this.misiles=misiles2;
        // addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
