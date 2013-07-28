@@ -24,13 +24,15 @@ System.out.println("connected");
 trans=new Transmisor(colaEnviar,s);
 rec=new Receptor(colaRec,s1);
 
-	misil=new MisilEnemigo(new Vector (0,0,0),new Vector (1,1,1),1);
-	colaEnviar.put(misil);
+	MisilEnemigo misil2=new MisilEnemigo(new Vector (0,0,0),new Vector (1,1,1),1);
+	MisilEnemigo misil1=new MisilEnemigo(new Vector (0,0,0),new Vector (1,1,1),2);
+	colaEnviar.put(misil2);
+	colaEnviar.put(misil1);
 	trans.start();
 	rec.start();
 	while(true){
 		misil=(MisilEnemigo)colaRec.take();
-		System.out.println(misil.getPosicion().getX());
+		System.out.println(misil.getID());
 		
 	}
 
