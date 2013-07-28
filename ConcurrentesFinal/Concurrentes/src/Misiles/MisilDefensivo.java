@@ -44,7 +44,7 @@ private Vector trayectoria2,trayectoria3;
 			if (etapaTray==1){
 				//posicion.imprimir();
 				//trayectoria2.imprimir();
-				interseccion.imprimir();
+				//interseccion.imprimir();
 				if(posicion.compararVector(interseccion, 100)){
 					etapaTray=2;
 					setPosicion(interseccion);
