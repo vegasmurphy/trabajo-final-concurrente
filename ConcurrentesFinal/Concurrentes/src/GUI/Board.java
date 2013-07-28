@@ -45,10 +45,10 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D)g;
        // g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
        g2d.setColor(Color.red);
-       //for(Misil craft:misiles){
-       Misil craft=misiles[0];
+       for(Misil craft:misiles){
+       //Misil craft=misiles[0];
        g2d.drawLine((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)),(int)(251-(craft.getPosicion().getX()/200)),(int)(251-(craft.getPosicion().getY()/200)));
-      // }
+       }
        g2d.drawOval(200, 200, 100, 100);
        g2d.setColor(Color.blue);
        g2d.drawOval(0, 0, 500, 500);
