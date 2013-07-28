@@ -1,5 +1,6 @@
 package GUI;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Misiles.*;
 
@@ -7,9 +8,14 @@ import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 
-    public GUI(ArrayList<Misil> misiles) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-        add(new Board(misiles));
+	public GUI(CopyOnWriteArrayList<MisilEnemigo> misiles,CopyOnWriteArrayList<MisilDefensivo> misilesDef) {
+
+        add(new Board(misiles,misilesDef));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 600);

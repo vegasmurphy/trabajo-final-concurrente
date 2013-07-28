@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import Misiles.*;
 import Comunicacion.*;
+import GUI.GUI;
 
 public class Radar extends Thread
 {
@@ -22,7 +23,8 @@ public class Radar extends Thread
 	private int cantidadMisilesEnemigos;
 	
 	public Radar()
-	{
+	{	
+	
 		Socket clienteTx = null;
 		try {
 			clienteTx = new Socket("localhost",9000);
@@ -50,6 +52,7 @@ public class Radar extends Thread
 		
 		generador = new GeneradorDeMisiles(listaMisilesEnemigos, this.frecuencia);
 		cantidadMisilesEnemigos = 0;
+		new GUI(listaMisilesEnemigos,listaMisilesDefensivos);
 	}
 	
 	public void run()

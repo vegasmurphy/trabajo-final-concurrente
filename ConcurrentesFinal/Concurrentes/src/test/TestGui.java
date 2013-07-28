@@ -1,5 +1,6 @@
 package test;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import GUI.*;
 import Misiles.*;
@@ -11,7 +12,9 @@ public class TestGui {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<Misil>misiles=new ArrayList<Misil>();
+		CopyOnWriteArrayList<MisilEnemigo>misiles=new CopyOnWriteArrayList<MisilEnemigo>();
+		CopyOnWriteArrayList<MisilDefensivo>misiles1=new CopyOnWriteArrayList<MisilDefensivo>();
+
 		MisilEnemigo misil=new MisilEnemigo(new Vector(50000,50000,100),new Vector(-10,-10,0),1);
 		MisilEnemigo misil1=new MisilEnemigo(new Vector(-50000,50000,100),new Vector(10,-10,0),1);
 		MisilEnemigo misil2=new MisilEnemigo(new Vector(-50000,-50000,100),new Vector(10,10,0),1);
@@ -24,14 +27,14 @@ public class TestGui {
 		
 		//Misil[] misiles=new Misil[2];
 		misiles.add(misil);
-		misiles.add(misildef);
+		misiles1.add(misildef);
 		misiles.add(misil1);
-		misiles.add(misildef1);
-		misiles.add(misildef2);
+		misiles1.add(misildef1);
+		misiles1.add(misildef2);
 		misiles.add(misil2);
-		misiles.add(misildef3);
+		misiles1.add(misildef3);
 		misiles.add(misil3);
-		new GUI(misiles);
+		new GUI(misiles,misiles1);
 		while(!Vector.compararVector(misil.getPosicion(), misildef.getPosicion(), 20)){
 			try {
 				Thread.sleep(5);

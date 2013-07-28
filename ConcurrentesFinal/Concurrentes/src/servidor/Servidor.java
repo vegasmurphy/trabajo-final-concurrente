@@ -1,6 +1,8 @@
 package servidor;
 import java.io.IOException;
 import java.net.*;
+
+import radar.Radar;
 import Comunicacion.*;
 import Misiles.*;
 import Monitor.HiloMisilDefensivo;
@@ -21,7 +23,7 @@ private static Monitor monitor;
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		monitor=new Monitor();
+		//monitor=new Monitor();
 		initServer();
 		MisilEnemigo misilNuevo = null;
 		while(true){
