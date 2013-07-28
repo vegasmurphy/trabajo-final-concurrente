@@ -1,11 +1,13 @@
 package GUI;
+import java.util.ArrayList;
+
 import Misiles.*;
 
 import javax.swing.JFrame;
 
 public class GUI extends JFrame {
 
-    public GUI(Misil[] misiles) {
+    public GUI(ArrayList<Misil> misiles) {
 
         add(new Board(misiles));
 
