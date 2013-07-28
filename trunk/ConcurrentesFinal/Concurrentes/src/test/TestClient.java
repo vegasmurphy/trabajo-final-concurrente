@@ -27,7 +27,7 @@ colaEnviar.put(new MisilEnemigo(new Vector(1,1,1),new Vector(1,2,3),0));
 transmisor.start();
 while(true){
 	misil=(MisilEnemigo)colaRecibidos.take();
-	System.out.println(misil.getPosicion().getX());
+	System.out.println(misil.getID());
 	
 }
 }catch(Exception e){System.out.println(e);}  
