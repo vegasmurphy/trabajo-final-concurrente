@@ -25,18 +25,18 @@ public class Radar extends Thread
 	public Radar()
 	{	
 	
-		Socket clienteTx = null;
+		Socket clienteRx = null;
 		try {
-			clienteTx = new Socket("localhost",9000);
+			clienteRx = new Socket("localhost",9000);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		Socket clienteRx = null;
+		Socket clienteTx = null;
 		try {
-			clienteRx = new Socket("localhost", 9000);
+			clienteTx = new Socket("localhost", 9000);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
