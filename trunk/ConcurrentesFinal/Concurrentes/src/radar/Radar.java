@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import Misiles.*;
 import Comunicacion.*;
@@ -12,7 +13,7 @@ import GUI.GUI;
 public class Radar extends Thread
 {
 	private final double distanciaMaxima = 12;
-	private final int frecuencia = 5000;
+	private final int frecuencia = 30000;
 	private CopyOnWriteArrayList<MisilEnemigo> listaMisilesEnemigos;
 	private CopyOnWriteArrayList<MisilDefensivo> listaMisilesDefensivos;
 	private Transmisor radarTx;
@@ -64,34 +65,30 @@ public class Radar extends Thread
 		
 		while(true)
 		{
-			int i;
 			
 			/* Identifica y registra todos los misiles defensivos lanzados*/
-			while(radarBufferRx.isEmpty() == false)
+			while(!radarBufferRx.isEmpty())
 			{
 				try {
 					listaMisilesDefensivos.add((MisilDefensivo) radarBufferRx.take());
+					System.out.println("Agrego misil defensivo: " + listaMisilesDefensivos.get(listaMisilesDefensivos.size()).getID()+"\n");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}	
 			
-			/* Envia todos los misiles detectados al Servidor */
-			for(i = cantidadMisilesEnemigos; i <= listaMisilesEnemigos.size(); i++)
-			{
-				try {
-					radarBufferTx.put(listaMisilesEnemigos.get(i));
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				cantidadMisilesEnemigos++;
-			}
+			/* Envia todos los misiles enemigos detectados recientemente, al Servidor 
+			 * Se compara el ID del ultimo misil enemigo identificado con la cantidad de misiles. Si este ultimo valor es mayor al primero, significa 
+			 * que hay nuevos misiles que comunicar*/
+		//	if(this.cantidadMisilesEnemigos < listaMisilesEnemigos.get(listaMisilesEnemigos.size()).getID());
+			ComunicarMisilesEnemigos();
 			
 			/* Hace avanzar a cada misil enemigo y defensivo*/
 			EfectuarAvance();
 			
 			/* Compara si hubo colision entre los misiles */
-			VerificarImpacto();
+			if(listaMisilesEnemigos.size() > 1)
+				VerificarImpacto();
 			
 			/* Espera por el proximo ciclo */
 			try {
@@ -104,11 +101,17 @@ public class Radar extends Thread
 	
 	private void EfectuarAvance()
 	{
+		Misil misil;
 		/* Efectua el avance de los misiles enemigos */
 		Iterator<MisilEnemigo> iteradorMisilesEnemigos = listaMisilesEnemigos.iterator();
 		while(iteradorMisilesEnemigos.hasNext())
-			iteradorMisilesEnemigos.next().avanzar();
-		
+		{
+			misil = (MisilEnemigo) iteradorMisilesEnemigos.next();
+			misil.avanzar();
+		//	System.out.println("Misil: "+ misil.getID() + "---> Posicion actual "); 
+		//	misil.getPosicion().imprimir();
+		//	System.out.println("\n");
+		}
 		/* Efectua el avance de los misiles defensivos */
 		Iterator<MisilDefensivo> iteradorMisilesDefensivos = listaMisilesDefensivos.iterator();
 		while(iteradorMisilesDefensivos.hasNext())
@@ -121,7 +124,7 @@ public class Radar extends Thread
 		Misil misil1, misil2;
 		
 		/* Compara las posiciones de un determinado misil con todos los demas misiles enemigos */
-		for(i = 0; i <= listaMisilesEnemigos.size(); i++)
+		for(i = 0; i < listaMisilesEnemigos.size(); i++)
 		{
 			misil1 = listaMisilesEnemigos.get(i);
 			
@@ -142,8 +145,9 @@ public class Radar extends Thread
 				i--;
 				break;
 			}
+			
 			/* Se compara la posicion de un determinado misil enemigo con los demas misiles enemigos */
-			if( i < listaMisilesEnemigos.size())
+			if( i < listaMisilesEnemigos.size()-1)
 			{
 				for(j = i+1; j < listaMisilesEnemigos.size(); j++ )
 				{
@@ -163,48 +167,69 @@ public class Radar extends Thread
 				}
 			}	
 			
-			/* Se compara la posicion del misil anterior (misil1), con la de los misiles atacantes */
-			for(j = 0; j <= listaMisilesDefensivos.size(); j++)
+			/* Se compara la posicion del misil anterior (misil1), con la de los demas misiles enemigos, en caso de haber mas de uno */
+			if(listaMisilesDefensivos.size() > 0)
 			{
-				misil2 = listaMisilesDefensivos.get(j);
-				
-				/* Si las posiciones de ambos misiles se encuentran a una distancia igual o menor a la 'distanciaMinima', se eliminan 
-				 * y se sigue la comparacion con los demas misiles */
-				if(misil1.getPosicion().compararVector(misil2.getPosicion(), this.distanciaMaxima))
+				for(j = 0; j <= listaMisilesDefensivos.size(); j++)
 				{
-					System.out.println("Chocaron los misiles:  Enemigo ---> " + misil1.getID() + " y Defensivo ---> "+  misil2.getID());
-					listaMisilesEnemigos.remove(i);
-					listaMisilesDefensivos.remove(j);
-					cantidadMisilesEnemigos--;
-					i--;
-					break;
-				}	
-			}	
+					misil2 = listaMisilesDefensivos.get(j);
+				
+					/* Si las posiciones de ambos misiles se encuentran a una distancia igual o menor a la 'distanciaMinima', se eliminan 
+					 * y se sigue la comparacion con los demas misiles */
+					if(misil1.getPosicion().compararVector(misil2.getPosicion(), this.distanciaMaxima))
+					{
+						System.out.println("Chocaron los misiles:  Enemigo ---> " + misil1.getID() + " y Defensivo ---> "+  misil2.getID());
+						listaMisilesEnemigos.remove(i);
+						listaMisilesDefensivos.remove(j);
+						cantidadMisilesEnemigos--;
+						i--;
+						break;
+					}	
+				}
+			}
 		}
 			
-		/* Compara si dos misiles defensivos chocaron entre si */
-		for(i = 0; i < listaMisilesDefensivos.size(); i++)
+		/* Compara, en caso de existir mas de dos misiles defensivos, si dos de estos chocaron entre si */
+		if(listaMisilesDefensivos.size() > 1)
 		{
-			misil1 = listaMisilesDefensivos.get(i);
-			for(j = i+1; j < listaMisilesDefensivos.size(); j++)
+			for(i = 0; i < listaMisilesDefensivos.size(); i++)
 			{
-				misil2 = listaMisilesDefensivos.get(j);
-				
-				/* Si las posiciones de ambos misiles se encuentran a una distancia igual o menor a la 'distanciaMinima', se eliminan 
-				 * y se sigue la comparacion con los demas misiles */
-				if(misil1.getPosicion().compararVector(misil2.getPosicion(), this.distanciaMaxima))
+				misil1 = listaMisilesDefensivos.get(i);
+				for(j = i+1; j < listaMisilesDefensivos.size(); j++)
 				{
-					System.out.println("Chocaron los misiles: Defensivo ---> " + misil1.getID() + " y Defensivo ---> "+  misil2.getID());
+					misil2 = listaMisilesDefensivos.get(j);
+				
+					/* Si las posiciones de ambos misiles se encuentran a una distancia igual o menor a la 'distanciaMinima', se eliminan 
+					 * y se sigue la comparacion con los demas misiles */
+					if(misil1.getPosicion().compararVector(misil2.getPosicion(), this.distanciaMaxima))
+					{
+						System.out.println("Chocaron los misiles: Defensivo ---> " + misil1.getID() + " y Defensivo ---> "+  misil2.getID());
 					
-					/* En caso de haberse producido una colision entre dos misiles defensivos, se debe informar tal situacion al Servidor */
-					ComunicarColision(misil1.getID(), misil2.getID());
+						/* En caso de haberse producido una colision entre dos misiles defensivos, se debe informar tal situacion al Servidor */
+						ComunicarColision(misil1.getID(), misil2.getID());
 					
-					listaMisilesDefensivos.remove(i);
-					listaMisilesDefensivos.remove(j);
-					i--;
-					break;
-				}	
+						listaMisilesDefensivos.remove(i);
+						listaMisilesDefensivos.remove(j);
+						i--;
+						break;
+					}	
+				}
 			}
+		}
+	}
+	
+	private void ComunicarMisilesEnemigos()
+	{
+		ListIterator<MisilEnemigo> iteradorMisilesEnemigos = listaMisilesEnemigos.listIterator(this.cantidadMisilesEnemigos);
+		while(iteradorMisilesEnemigos.hasNext())
+		{
+			try {
+				radarBufferTx.put(iteradorMisilesEnemigos.next());
+				this.cantidadMisilesEnemigos++;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("Comunico misil\n");
 		}
 	}
 	
