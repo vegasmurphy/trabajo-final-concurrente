@@ -64,7 +64,7 @@ public class AnalizadorTrayectoria {
 		double z=misil.getPosicion().getZ()+(misil.getVelocidad().getZ()*iteraciones);
 		Vector puntoIntermedio=new Vector(posInicial.getX(),posInicial.getY(),100);
 		interseccion.setZ(z);
-		interseccion.imprimir();
+		//interseccion.imprimir();
 		Vector tray1=CalcularTrayectoria(puntoIntermedio,interseccion);
 		Vector tray2=CalcularTrayectoria(interseccion,misil.getPosicion());
 		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,10), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);

@@ -17,11 +17,11 @@ private Vector trayectoria2,trayectoria3;
 	trayectoria2=tray2;
 	trayectoria3=tray3;
 	System.out.println("interseccion:");
-	interseccion.imprimir();
+	//interseccion.imprimir();
 	System.out.println("tray2");
-	trayectoria2.imprimir();
+	//trayectoria2.imprimir();
 	System.out.println("tray3");
-	trayectoria3.imprimir();
+	//trayectoria3.imprimir();
 	// TODO Auto-generated constructor stub
 }
 
