@@ -170,7 +170,7 @@ public class Radar extends Thread
 			/* Se compara la posicion del misil anterior (misil1), con la de los demas misiles enemigos, en caso de haber mas de uno */
 			if(listaMisilesDefensivos.size() > 0)
 			{
-				for(j = 0; j <= listaMisilesDefensivos.size(); j++)
+				for(j = 0; j < listaMisilesDefensivos.size(); j++)
 				{
 					misil2 = listaMisilesDefensivos.get(j);
 				
