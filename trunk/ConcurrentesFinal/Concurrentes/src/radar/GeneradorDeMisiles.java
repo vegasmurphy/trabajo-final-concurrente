@@ -35,7 +35,8 @@ public class GeneradorDeMisiles extends Thread
 			Vector velocidad = new Vector();
 			setPosicionInicial(posicion);
 			setVelocidad(velocidad, posicion);
-			System.out.println("Misil Enemigo: ID " + ID +" --> Posicion inicial " + posicion.getX() +"  "+ posicion.getY() +"  " + posicion.getZ());
+			System.out.println("Misil "+ "ID : " + ID +"\n--> Posicion inicial " + posicion.getX() +"  "+ posicion.getY() +"  " + posicion.getZ() +
+							   "\n          Velocidad " + velocidad.getX() + "  " + velocidad.getY()+ "  " +velocidad.getZ());
 			misiles.add(new MisilEnemigo(posicion, velocidad, ID));
 			ID++;
 			try {

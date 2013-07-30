@@ -11,8 +11,8 @@ import Monitor.Monitor;
 
 public class Servidor {
 
-private static Buffer Rx;
-private static Buffer Tx;
+private static Buffer Rx=new Buffer();
+private static Buffer Tx=new Buffer();
 private static Transmisor transmisor;
 private static Receptor receptor;
 private static int port=9000;
@@ -28,12 +28,17 @@ private static Monitor monitor;
 		MisilEnemigo misilNuevo = null;
 		while(true){
 			try {
-				misilNuevo=(MisilEnemigo) Rx.take();
+				System.out.println("llego1");
+				if(!Rx.isEmpty()){
+				misilNuevo=(MisilEnemigo)Rx.take();
+				procesarMisil(misilNuevo);
+				System.out.println("llego2");
+			}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			procesarMisil(misilNuevo);
+			
 			
 		}
 	}
@@ -43,7 +48,7 @@ private static Monitor monitor;
 	//analizar el impacto del misil
 	//crear hiloMisilDefensivo
 	//
-		HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,monitor,Tx);
+		HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,Tx);
 		hiloDefensivo.start();
 }
 
@@ -54,14 +59,17 @@ private static Monitor monitor;
 			ss=new ServerSocket(port);
 			s=ss.accept();
 			s1=ss.accept();
+			transmisor=new Transmisor(Tx,s);
+			receptor=new Receptor(Rx,s1);
+			transmisor.start();
+			receptor.start();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		transmisor=new Transmisor(Tx,s);
-		receptor=new Receptor(Rx,s1);
-		transmisor.start();
-		receptor.start();
+		
+		
 	}
 	
 	
