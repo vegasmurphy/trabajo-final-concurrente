@@ -54,13 +54,15 @@ public class Board extends JPanel implements ActionListener {
        //Misil craft=misiles[0];
        //g2d.drawLine((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)),(int)(251-(craft.getPosicion().getX()/200)),(int)(251-(craft.getPosicion().getY()/200)));
        g2d.fillOval((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)), 10, 10);
+       g2d.drawString(Double.toString(craft.getPosicion().getZ()),(int)(250-(craft.getPosicion().getX()/200))+10,(int)(250-(craft.getPosicion().getY()/200)+10));
        }
        g2d.drawOval(200, 200, 100, 100);
        g2d.setColor(Color.blue);
        for(MisilDefensivo craft:misilesDefensivos){
           // g2d.drawLine((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)),(int)(251-(craft.getPosicion().getX()/200)),(int)(251-(craft.getPosicion().getY()/200)));
            g2d.fillOval((int)(250-(craft.getPosicion().getX()/200)),(int)(250-(craft.getPosicion().getY()/200)), 10, 10);
-    	   
+           g2d.drawString(Double.toString(craft.getPosicion().getZ()),(int)(250-(craft.getPosicion().getX()/200))+10,(int)(250-(craft.getPosicion().getY()/200)+10));
+
        }
        g2d.drawOval(0, 0, 500, 500);
         //g2d.drawLine(50, 50, 100, 100);
