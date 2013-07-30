@@ -1,6 +1,7 @@
 package Misiles;
 
 import java.io.Serializable;
+import java.lang.Math;
 
 public class Vector implements Serializable{
 /**
@@ -104,14 +105,31 @@ public double getZ() {
 public void setZ(double z) {
 	this.z = z;
 }
+
+public static Vector Truncar( Vector v )
+{
+	Vector vector = new Vector (Math.floor(v.getX()*100)/100, Math.floor(v.getY()*100)/100, Math.floor(v.getZ()*100)/100);
+	return vector;
+}
+
+public static Vector Ceil( Vector v )
+{
+	Vector vector = new Vector (Math.ceil(v.getX()), Math.ceil(v.getY()), Math.ceil(v.getZ()));
+	return vector;
+}
+
 public Vector(double x, double y, double z) {
 	super();
 	this.x = x;
 	this.y = y;
 	this.z = z;
 }
-public Vector() {
-	// TODO Auto-generated constructor stub
+
+public Vector()
+{
+	this.x = 0;
+	this.y = 0;
+	this.z = 0;
 }
 
 }

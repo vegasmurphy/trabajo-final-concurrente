@@ -35,9 +35,10 @@ public class GeneradorDeMisiles extends Thread
 			Vector velocidad = new Vector();
 			setPosicionInicial(posicion);
 			setVelocidad(velocidad, posicion);
-			System.out.println("Misil "+ "ID : " + ID +"\n--> Posicion inicial " + posicion.getX() +"  "+ posicion.getY() +"  " + posicion.getZ() +
-							   "\n          Velocidad " + velocidad.getX() + "  " + velocidad.getY()+ "  " +velocidad.getZ());
-			misiles.add(new MisilEnemigo(posicion, velocidad, ID));
+			MisilEnemigo misil = new MisilEnemigo(Vector.Ceil(posicion), Vector.Truncar(velocidad), ID);
+			misiles.add(misil);
+			misil.getPosicion().imprimir();
+			
 			ID++;
 			try {
 				sleep(this.frecuencia);
@@ -69,6 +70,7 @@ public class GeneradorDeMisiles extends Thread
 		
 		/* Se establece una altura entre 500 y 5000 metros*/
 		posicion.setZ(500+4500*rand.nextDouble());
+		
 	}
 	
 	/** Establece la velocidad del Misil Enemigo
@@ -100,6 +102,7 @@ public class GeneradorDeMisiles extends Thread
 		velocidad.setX( velocX / modulo );
 		velocidad.setY( velocY / modulo );
 		velocidad.setZ( velocZ / modulo );
+		
 	}
 	
 	public int getID()
