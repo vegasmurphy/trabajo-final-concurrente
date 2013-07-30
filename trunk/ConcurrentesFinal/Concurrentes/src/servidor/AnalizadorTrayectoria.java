@@ -42,7 +42,9 @@ public class AnalizadorTrayectoria {
 			return intB;
 			
 		}}
-		return puntos.get(0);
+		if(puntos.size()>0){
+		return puntos.get(0);}
+		return null;
 	}
 	
 	public Vector CalcularTrayectoria(Vector posInicial,Vector posFinal){
@@ -61,6 +63,7 @@ public class AnalizadorTrayectoria {
 	public MisilDefensivo generarMisilDefensivo(MisilEnemigo misil,Vector posInicial){
 		MisilDefensivo misilDef=null;
 		Vector interseccion=DeterminarPuntoInterseccion(misil);
+		if(interseccion!=null){
 		Vector distancia=Vector.restar(misil.getPosicion(), interseccion);
 		double iteraciones=Math.abs(distancia.getX()/misil.getVelocidad().getX());
 		double z=misil.getPosicion().getZ()+(misil.getVelocidad().getZ()*iteraciones);
@@ -72,7 +75,8 @@ public class AnalizadorTrayectoria {
 		Vector tray2=new Vector(-misil.getVelocidad().getX(),-misil.getVelocidad().getY(),-misil.getVelocidad().getZ());
 		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,10), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);
 		return misilDef;
-		
+		}
+		return null;
 	}
 	
 }

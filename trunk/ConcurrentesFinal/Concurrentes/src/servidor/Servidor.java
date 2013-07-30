@@ -59,7 +59,8 @@ private static Monitor monitor;
 		
 			
 			try {
-				Tx.put(misildef);
+				if(misildef!=null){
+				Tx.put(misildef);}
 				//Tx.put(misildef1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
