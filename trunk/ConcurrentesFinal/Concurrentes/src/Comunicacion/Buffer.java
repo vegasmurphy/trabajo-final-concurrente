@@ -1,5 +1,5 @@
 package Comunicacion;
-import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Condition; /* Se importan bibliotecas de clases Concurrentes */
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
