@@ -28,8 +28,10 @@ public class AnalizadorTrayectoria {
 		if(puntos.size()>1){
 		intA=puntos.get(0);
 		intB=puntos.get(1);
-		//intA.imprimir();
-		//intB.imprimir();
+		System.out.println("");
+		System.out.println("interseccion cilindro:");
+		intA.imprimir();
+		intB.imprimir();
 		if(intA.distancia(puntoB)<intB.distancia(puntoB)){
 			//intA.imprimir();
 			return intA;
@@ -66,7 +68,8 @@ public class AnalizadorTrayectoria {
 		interseccion.setZ(z);
 		//interseccion.imprimir();
 		Vector tray1=CalcularTrayectoria(puntoIntermedio,interseccion);
-		Vector tray2=CalcularTrayectoria(interseccion,misil.getPosicion());
+		//Vector tray2=CalcularTrayectoria(interseccion,misil.getPosicion());
+		Vector tray2=new Vector(-misil.getVelocidad().getX(),-misil.getVelocidad().getY(),-misil.getVelocidad().getZ());
 		misilDef=new MisilDefensivo(posInicial,new Vector(0,0,10), misil.getID(), tray1, tray2, misil.getPosicion(),interseccion);
 		return misilDef;
 		
