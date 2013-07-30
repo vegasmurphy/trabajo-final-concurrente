@@ -31,6 +31,7 @@ private static Monitor monitor;
 				//System.out.println("llego1");
 				//if(!Rx.isEmpty()){
 				misilNuevo=(MisilEnemigo)Rx.take();
+				
 				procesarMisil(misilNuevo);
 				System.out.println("llego2");
 			//}
@@ -50,7 +51,10 @@ private static Monitor monitor;
 	//
 		//HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,Tx);
 		AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
-		MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
+		Vector v=analizador.DeterminarPuntoImpacto(misilNuevo);
+		if(v.getX()<50000&&v.getX()>-50000){
+			if(v.getY()<50000&&v.getY()>-50000){
+			MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
 		
 			
 			try {
@@ -59,7 +63,7 @@ private static Monitor monitor;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}	}}
 	
 	}
 
