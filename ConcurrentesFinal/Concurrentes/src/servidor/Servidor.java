@@ -28,12 +28,12 @@ private static Monitor monitor;
 		MisilEnemigo misilNuevo = null;
 		while(true){
 			try {
-				System.out.println("llego1");
-				if(!Rx.isEmpty()){
+				//System.out.println("llego1");
+				//if(!Rx.isEmpty()){
 				misilNuevo=(MisilEnemigo)Rx.take();
 				procesarMisil(misilNuevo);
 				System.out.println("llego2");
-			}
+			//}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,9 +48,20 @@ private static Monitor monitor;
 	//analizar el impacto del misil
 	//crear hiloMisilDefensivo
 	//
-		HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,Tx);
-		hiloDefensivo.start();
-}
+		//HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,Tx);
+		AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
+		MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
+		
+			
+			try {
+				Tx.put(misildef);
+				//Tx.put(misildef1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	
+	}
 
 	private static void initServer(){
 		Socket s = null,s1 = null;

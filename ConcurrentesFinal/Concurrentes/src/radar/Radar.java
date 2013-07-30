@@ -71,7 +71,7 @@ public class Radar extends Thread
 			{
 				try {
 					listaMisilesDefensivos.add((MisilDefensivo) radarBufferRx.take());
-					System.out.println("Agrego misil defensivo: " + listaMisilesDefensivos.get(listaMisilesDefensivos.size()).getID()+"\n");
+					System.out.println("Agrego misil defensivo: " + listaMisilesDefensivos.get(listaMisilesDefensivos.size()-1).getID()+"\n");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
