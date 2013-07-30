@@ -36,7 +36,7 @@ MisilDefensivo misildef=analizador.generarMisilDefensivo(misil, new Vector(10000
 MisilDefensivo misildef1=analizador.generarMisilDefensivo(misil1, new Vector(0,10000,0));
 MisilDefensivo misildef2=analizador.generarMisilDefensivo(misil2, new Vector(0,-10000,0));
 MisilDefensivo misildef3=analizador.generarMisilDefensivo(misil3, new Vector(-10000,0,0));
-	colaEnviar.put(misildef2);
+	//colaEnviar.put(misildef2);
 	colaEnviar.put(misildef1);
 	trans.start();
 	rec.start();
