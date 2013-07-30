@@ -25,7 +25,7 @@ public class AnalizadorTrayectoria {
 		List<Vector> puntos = CircleLine.getCircleLineIntersectionPoint(misil.getPosicion(), puntoB, new Vector(0,0,0), 10000);
 		Vector intA,intB;
 		
-		
+		if(puntos.size()>1){
 		intA=puntos.get(0);
 		intB=puntos.get(1);
 		//intA.imprimir();
@@ -39,8 +39,8 @@ public class AnalizadorTrayectoria {
 			//intB.imprimir();
 			return intB;
 			
-		}
-		
+		}}
+		return puntos.get(0);
 	}
 	
 	public Vector CalcularTrayectoria(Vector posInicial,Vector posFinal){

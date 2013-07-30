@@ -12,7 +12,7 @@ import GUI.GUI;
 
 public class Radar extends Thread
 {
-	private final double distanciaMaxima = 12;
+	private final double distanciaMaxima = 50;
 	private final int frecuencia = 30000;
 	private CopyOnWriteArrayList<MisilEnemigo> listaMisilesEnemigos;
 	private CopyOnWriteArrayList<MisilDefensivo> listaMisilesDefensivos;
