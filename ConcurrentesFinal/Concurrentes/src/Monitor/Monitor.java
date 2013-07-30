@@ -22,13 +22,13 @@ public class Monitor {
 		marcadosM.show();
 	}
 	
-	public Vector obtenerRecurso(MisilEnemigo misilEnemigo){
-		Vector posicionBase=null;
+	public BaseMisil obtenerRecurso(MisilEnemigo misilEnemigo){
+		BaseMisil base=null;
 		/*Calcular base mas cercana y devolver la posicion de la base disponible de la cual se procedera a lanzar el misil
 		 * Se puede utilizar los metodos provistos por AnalizadorTrayectoria para obtener el punto de interseccion con el cilindro
 		 */
 		
-		return posicionBase;
+		return base;
 		
 	}
 
