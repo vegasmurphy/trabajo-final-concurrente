@@ -52,8 +52,9 @@ private static Monitor monitor;
 		//HiloMisilDefensivo hiloDefensivo=new HiloMisilDefensivo(misilNuevo,Tx);
 		AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
 		Vector v=analizador.DeterminarPuntoImpacto(misilNuevo);
-		if(v.getX()<50000&&v.getX()>-50000){
-			if(v.getY()<50000&&v.getY()>-50000){
+		v.imprimir();
+		if(v.getX()<10000&&v.getX()>-10000){
+			if(v.getY()<10000&&v.getY()>-10000){
 			MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
 		
 			
