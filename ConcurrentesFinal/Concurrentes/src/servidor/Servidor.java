@@ -55,17 +55,11 @@ private static Monitor monitor;
 		//v.imprimir();
 		if(v.getX()<10000&&v.getX()>-10000){
 			if(v.getY()<10000&&v.getY()>-10000){
-			MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
+			HiloMisilDefensivo hilo=new HiloMisilDefensivo(misilNuevo, Tx, monitor);
+			hilo.start();
+			//	MisilDefensivo misildef=analizador.generarMisilDefensivo(misilNuevo, new Vector(0,-10000,0));
 		
-			
-			try {
-				if(misildef!=null){
-				Tx.put(misildef);}
-				//Tx.put(misildef1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	}}
+			}}
 	
 	}
 

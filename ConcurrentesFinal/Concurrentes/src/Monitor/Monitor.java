@@ -17,7 +17,7 @@ public class Monitor {
 	private double[][] marcados = {{4,0,0,0,0,1,1,1,1}};
 	private double [][] res = {{0,0,0,0,0,0,0,0}};
 	private double [][] disparoNorOeste = {{1},{0},{0},{0},{0},{0},{0},{0}}, disparoSudOeste = {{0},{1},{0},{0},{0},{0},{0},{0}}, disparoSudEste = {{0},{0},{1},{0},{0},{0},{0},{0}}, disparoNorEste = {{0},{0},{0},{1},{0},{0},{0},{0}};
-	private double [][] bases = {{0,1,2,3}}; // vector que decide que base esta disponible, usado al final. ()
+	private double [][] bases = {{0,0,1,2,3,0,0,0,0}}; // vector que decide que base esta disponible, usado al final. ()
 	private Matrix norOeste,sudOeste,sudEste,norEste;
 	private Matrix marcadosM;
 	private Matrix matriz;
@@ -83,7 +83,7 @@ public class Monitor {
 			resultado = (matriz.times(norOeste).plus(marcadosM));
 			resultado.show();
 			if (!resultado.contieneNeg()){ // si contiene negativos quire decir que esta base esta ocupada
-				base = elegirBase((int)base_devol.getValor(0,0));
+				base = elegirBase((int)base_devol.getValor(0,1));
 				desrotar (numero_base);
 				return base; 
 			}
@@ -91,7 +91,7 @@ public class Monitor {
 				resultado = (matriz.times(sudOeste).plus(marcadosM));
 				resultado.show();
 				if (!resultado.contieneNeg()){
-					base = elegirBase((int)base_devol.getValor(0,1));
+					base = elegirBase((int)base_devol.getValor(0,2));
 					desrotar (numero_base);
 					return base; 
 				}
@@ -99,12 +99,12 @@ public class Monitor {
 					resultado = (matriz.times(sudEste).plus(marcadosM));
 					resultado.show();
 					if (!resultado.contieneNeg()){
-						base = elegirBase((int)base_devol.getValor(0,2));
+						base = elegirBase((int)base_devol.getValor(0,3));
 						desrotar (numero_base);
 						return base; 
 					}
 					else {
-						base = elegirBase((int)base_devol.getValor(0,3));
+						base = elegirBase((int)base_devol.getValor(0,4));
 						desrotar (numero_base);
 						return base;
 					}

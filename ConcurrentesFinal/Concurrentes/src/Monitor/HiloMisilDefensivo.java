@@ -6,7 +6,7 @@ import Misiles.*;
 public class HiloMisilDefensivo extends Thread {
 	private MisilEnemigo misilAtacante;
 	private Monitor monitor;
-	private AnalizadorTrayectoria analizador;
+	private AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
 	private Buffer enviar;
 	@Override
 	
