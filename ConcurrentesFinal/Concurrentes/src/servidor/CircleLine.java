@@ -49,6 +49,7 @@ public class CircleLine {
         public String toString() {
             return "Point [x=" + x + ", y=" + y + "]";
         }
-    }}
+    }
+ }
 
 
