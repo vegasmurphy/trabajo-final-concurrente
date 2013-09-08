@@ -12,8 +12,8 @@ import GUI.GUI;
 
 public class Radar extends Thread
 {
-	private final double distanciaMaxima = 50;
-	private final int frecuencia = 10000;
+	private final double distanciaMaxima = 50; // tolerancia
+	private final int frecuencia = 10000; //cada uanto se genera un misil enemigo
 	private CopyOnWriteArrayList<MisilEnemigo> listaMisilesEnemigos;
 	private CopyOnWriteArrayList<MisilDefensivo> listaMisilesDefensivos;
 	private Transmisor radarTx;
@@ -52,7 +52,7 @@ public class Radar extends Thread
 		radarTx = new Transmisor(radarBufferTx, clienteTx);
 		
 		generador = new GeneradorDeMisiles(listaMisilesEnemigos, this.frecuencia);
-		cantidadMisilesEnemigos = 0;
+		cantidadMisilesEnemigos = 0; 
 		new GUI(listaMisilesEnemigos,listaMisilesDefensivos);
 	}
 	
