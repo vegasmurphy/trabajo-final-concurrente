@@ -7,7 +7,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import servidor.AnalizadorTrayectoria;
-
 import Misiles.MisilEnemigo;
 import Misiles.Vector;
 
@@ -39,10 +38,17 @@ public class Monitor {
 		resultado = new Matrix(res);
 		base_devol = new Matrix(bases);
 		arregloBases = new BaseMisil[4];
-		arregloBases[0] = new BaseMisil(new Vector(-10,0,0),0);
-		arregloBases[1] = new BaseMisil (new Vector(0,-10,0),1); 
-		arregloBases[2] = new BaseMisil (new Vector(10,0,0),2); 
-		arregloBases[3] = new BaseMisil (new Vector(0,10,0),3);
+		arregloBases[0] = new BaseMisil(new Vector(-1000,0,0),0);
+		arregloBases[1] = new BaseMisil (new Vector(0,-1000,0),1); 
+		arregloBases[2] = new BaseMisil (new Vector(1000,0,0),2); 
+		arregloBases[3] = new BaseMisil (new Vector(0,1000,0),3);
+		/*MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(-50000,50000,50000),new Vector(500,-500,-500),54);
+		try {
+			obtenerRecurso(misilEnemigo);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 	
 	public BaseMisil obtenerRecurso(MisilEnemigo misilEnemigo) throws InterruptedException{
@@ -73,14 +79,16 @@ public class Monitor {
 			else {
 				numero_base = 0;
 			}
-	
+			System.out.println(numero_base);
 			marcadosM.rotarIzquierda(numero_base); 	// esto se rota para que los if se pregunten en siempre el mismo orden
 													// en vez de cambiar el orden de los if, se rota el vector
 			base_devol.rotarIzquierda(numero_base); 	// por la misma razon que lo anterior, es el numero de base 
 												// que devuelve el monitor	
 	
 			// se altera el mapa !!!!!!!! ojoo
-			resultado = (matriz.times(norOeste).plus(marcadosM));
+			
+			//matriz.times(norOeste).transpose().show();marcadosM.show();
+			resultado = (matriz.times(norOeste).transpose().plus(marcadosM));
 			resultado.show();
 			if (!resultado.contieneNeg()){ // si contiene negativos quire decir que esta base esta ocupada
 				base = elegirBase((int)base_devol.getValor(0,1));
@@ -119,8 +127,8 @@ public class Monitor {
 	
 	// hacer un metodo devolver recurso
 	public void devolverRecurso(int n_base) throws InterruptedException{
-		double [][] devolverNorOeste = {{1},{0},{0},{0},{0},{0},{0},{0}}, devolverSudOeste = {{0},{1},{0},{0},{0},{0},{0},{0}},
-					devolverSudEste = {{0},{0},{1},{0},{0},{0},{0},{0}}, devolverNorEste = {{0},{0},{0},{1},{0},{0},{0},{0}};
+		double [][] devolverNorOeste = {{0},{0},{0},{0},{1},{0},{0},{0}}, devolverSudOeste = {{0},{0},{0},{0},{0},{1},{0},{0}},
+					devolverSudEste = {{0},{0},{0},{0},{0},{0},{1},{0}}, devolverNorEste = {{0},{0},{0},{0},{0},{0},{0},{1}};
 		Matrix devNorOeste = new Matrix(devolverNorOeste);
 		Matrix devSudOeste = new Matrix(devolverSudOeste);
 		Matrix devSudEste = new Matrix(devolverSudEste);
@@ -129,12 +137,12 @@ public class Monitor {
 		lock.lock();
 		
 		if(n_base == 0)	
-			resultado = matriz.times(devNorOeste).plus(marcadosM);
+			resultado = matriz.times(devNorOeste).transpose().plus(marcadosM);
 		else if (n_base == 1)
-			resultado = matriz.times(devSudOeste).plus(marcadosM);
+			resultado = matriz.times(devSudOeste).transpose().plus(marcadosM);
 		else if (n_base == 2)
-			resultado = matriz.times(devSudEste).plus(marcadosM);
-		else resultado = matriz.times(devNorEste).plus(marcadosM);
+			resultado = matriz.times(devSudEste).transpose().plus(marcadosM);
+		else resultado = matriz.times(devNorEste).transpose().plus(marcadosM);
 		
 		try {
 			recursoNoDisponible.signal(); // se devuelve el recurso utilizado.
