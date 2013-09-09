@@ -17,7 +17,7 @@ private static Transmisor transmisor;
 private static Receptor receptor;
 private static int port=9000;
 private static ServerSocket ss;
-private static Monitor monitor;
+private static Monitor monitor=new Monitor();
 /**
 	 * @param args
 	 */
