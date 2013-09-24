@@ -20,6 +20,7 @@ public class HiloMisilDefensivo extends Thread {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		base.getPosicion().imprimir();
 		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,base.getPosicion());
 		try {
 			enviar.put(misilDef);
