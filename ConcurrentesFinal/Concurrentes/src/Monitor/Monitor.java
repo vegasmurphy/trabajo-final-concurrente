@@ -38,17 +38,34 @@ public class Monitor {
 		resultado = new Matrix(res);
 		base_devol = new Matrix(bases);
 		arregloBases = new BaseMisil[4];
-		arregloBases[0] = new BaseMisil(new Vector(-1000,0,0),0);
-		arregloBases[1] = new BaseMisil (new Vector(0,-1000,0),1); 
-		arregloBases[2] = new BaseMisil (new Vector(1000,0,0),2); 
-		arregloBases[3] = new BaseMisil (new Vector(0,1000,0),3);
-		/*MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(-50000,50000,50000),new Vector(500,-500,-500),54);
+		arregloBases[0] = new BaseMisil(new Vector(-10000,0,0),0);
+		arregloBases[1] = new BaseMisil (new Vector(0,-10000,0),1); 
+		arregloBases[2] = new BaseMisil (new Vector(10000,0,0),2); 
+		arregloBases[3] = new BaseMisil (new Vector(0,10000,0),3);
+		MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(-50000,50000,50000),new Vector(500,-500,-500),54);
+		MisilEnemigo misil1Enemigo=new MisilEnemigo(new Vector(50000,50000,50000),new Vector(-500,-500,-500),54);
 		try {
-			obtenerRecurso(misilEnemigo);
+			BaseMisil base=obtenerRecurso(misil1Enemigo);
+			BaseMisil base1=obtenerRecurso(misilEnemigo);
+			base.getPosicion().imprimir();
+			base1.getPosicion().imprimir();
+			System.out.println("");
+			marcadosM.show();
+			System.out.println("Primera Devolucion recurso");
+			devolverRecurso(base.getNumeroBase());
+			System.out.println("");
+			marcadosM.show();
+			System.out.println("Segunda devolucion recurso");
+			devolverRecurso(base1.getNumeroBase());
+			System.out.println("");
+			marcadosM.show();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
+		
+		
+		
 	}
 	
 	public BaseMisil obtenerRecurso(MisilEnemigo misilEnemigo) throws InterruptedException{
@@ -79,7 +96,7 @@ public class Monitor {
 			else {
 				numero_base = 0;
 			}
-			System.out.println(numero_base);
+			System.out.println("base solicitada: "+numero_base);
 			marcadosM.rotarIzquierda(numero_base); 	// esto se rota para que los if se pregunten en siempre el mismo orden
 													// en vez de cambiar el orden de los if, se rota el vector
 			base_devol.rotarIzquierda(numero_base); 	// por la misma razon que lo anterior, es el numero de base 
@@ -92,32 +109,50 @@ public class Monitor {
 			resultado.show();
 			if (!resultado.contieneNeg()){ // si contiene negativos quire decir que esta base esta ocupada
 				base = elegirBase((int)base_devol.getValor(0,1));
+				System.out.println("base elegida:"+base.getNumeroBase());
+				marcadosM=resultado;
 				desrotar (numero_base);
+				
+				resultado.show();
 				return base; 
 			}
 			else {
-				resultado = (matriz.times(sudOeste).plus(marcadosM));
+				resultado = (matriz.times(sudOeste).transpose().plus(marcadosM));
 				resultado.show();
 				if (!resultado.contieneNeg()){
 					base = elegirBase((int)base_devol.getValor(0,2));
+					System.out.println("base elegida:"+base.getNumeroBase());
+					marcadosM=resultado;
 					desrotar (numero_base);
+					
+					resultado.show();
 					return base; 
 				}
 				else {
-					resultado = (matriz.times(sudEste).plus(marcadosM));
+					resultado = (matriz.times(sudEste).transpose().plus(marcadosM));
 					resultado.show();
 					if (!resultado.contieneNeg()){
 						base = elegirBase((int)base_devol.getValor(0,3));
+						marcadosM=resultado;
 						desrotar (numero_base);
+						
+						resultado.show();
 						return base; 
 					}
 					else {
+						resultado = (matriz.times(sudEste).transpose().plus(marcadosM));
+						resultado.show();
 						base = elegirBase((int)base_devol.getValor(0,4));
+						marcadosM=resultado;
 						desrotar (numero_base);
+						
+						resultado.show();
 						return base;
 					}
 				}
-			}	
+			
+			}
+			
 		}
 		finally {
 			lock.unlock();
@@ -135,15 +170,18 @@ public class Monitor {
 		Matrix devNorEste = new Matrix(devolverNorEste);
 		
 		lock.lock();
-		
+		System.out.println(n_base);
 		if(n_base == 0)	
-			resultado = matriz.times(devNorOeste).transpose().plus(marcadosM);
-		else if (n_base == 1)
+			{resultado = matriz.times(devNorOeste).transpose().plus(marcadosM);
+			marcadosM=resultado;}
+		else if (n_base == 1){
 			resultado = matriz.times(devSudOeste).transpose().plus(marcadosM);
-		else if (n_base == 2)
+			marcadosM=resultado;}
+		else if (n_base == 2){
 			resultado = matriz.times(devSudEste).transpose().plus(marcadosM);
-		else resultado = matriz.times(devNorEste).transpose().plus(marcadosM);
-		
+			marcadosM=resultado;}
+		else {resultado = matriz.times(devNorEste).transpose().plus(marcadosM);
+		marcadosM=resultado;}
 		try {
 			recursoNoDisponible.signal(); // se devuelve el recurso utilizado.
 		}

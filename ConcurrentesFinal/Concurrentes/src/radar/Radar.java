@@ -13,7 +13,7 @@ import GUI.GUI;
 public class Radar extends Thread
 {
 	private final double distanciaMaxima = 50; // tolerancia
-	private final int frecuencia = 10000; //cada uanto se genera un misil enemigo
+	private final int frecuencia = 1000; //cada uanto se genera un misil enemigo
 	private CopyOnWriteArrayList<MisilEnemigo> listaMisilesEnemigos;
 	private CopyOnWriteArrayList<MisilDefensivo> listaMisilesDefensivos;
 	private Transmisor radarTx;
