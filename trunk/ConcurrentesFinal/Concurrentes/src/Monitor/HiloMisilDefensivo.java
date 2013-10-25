@@ -16,27 +16,14 @@ public class HiloMisilDefensivo extends Thread {
 		BaseMisil base = null;
 		try {
 			base = monitor.obtenerRecurso(misilAtacante);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		base.getPosicion().imprimir();
-		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,base.getPosicion());
-		try {
+			if(base!=null){
+		//MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,base.getPosicion());
+		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,new Vector(10000,0,0));
+
 			enviar.put(misilDef);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//super.run();
-		try {
-			sleep(20);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			monitor.devolverRecurso(base.getNumeroBase());
+	
+	
+			monitor.devolverRecurso(base.getNumeroBase());}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
