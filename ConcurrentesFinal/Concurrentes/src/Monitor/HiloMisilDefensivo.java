@@ -8,33 +8,51 @@ public class HiloMisilDefensivo extends Thread {
 	private Monitor monitor;
 	private AnalizadorTrayectoria analizador=new AnalizadorTrayectoria();
 	private Buffer enviar;
+	private BaseMisil base=null;
 	@Override
 	
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		BaseMisil base = null;
-		try {
-			base = monitor.obtenerRecurso(misilAtacante);
+	
+		MisilEnemigo misilLocal=new MisilEnemigo(misilAtacante.getPosicion(), misilAtacante.getVelocidad(), misilAtacante.getID());
+			try {
+				base = monitor.obtenerRecurso(misilLocal);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(base!=null){
-		//MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,base.getPosicion());
-		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,new Vector(10000,0,0));
+		MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilLocal,base.getPosicion());
+		//MisilDefensivo misilDef=analizador.generarMisilDefensivo(misilAtacante,new Vector(0,10000,0));
 
-			enviar.put(misilDef);
+			try {
+				enviar.put(misilDef);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	
-	
-			monitor.devolverRecurso(base.getNumeroBase());}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				try {
+					sleep(10000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			try {
+				monitor.devolverRecurso(base.getNumeroBase());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
+		
 	}
 	
 	public HiloMisilDefensivo(MisilEnemigo misil,Buffer elementosAEnviar, Monitor monitor){
-		misilAtacante = misil;
+		this.misilAtacante = misil;
 		this.monitor = monitor;
 		//this.monitor=monitor;
-		enviar = elementosAEnviar;
+		this.enviar = elementosAEnviar;
 	}
 		
 }
