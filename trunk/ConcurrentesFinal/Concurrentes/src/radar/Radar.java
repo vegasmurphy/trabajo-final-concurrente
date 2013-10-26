@@ -13,7 +13,7 @@ import GUI.GUI;
 public class Radar extends Thread
 {
 	private final double distanciaMaxima = 50; // tolerancia
-	private final int frecuencia = 1000; //cada uanto se genera un misil enemigo
+	private final int frecuencia = 5000; //cada uanto se genera un misil enemigo
 	private CopyOnWriteArrayList<MisilEnemigo> listaMisilesEnemigos;
 	private CopyOnWriteArrayList<MisilDefensivo> listaMisilesDefensivos;
 	private Transmisor radarTx;
@@ -189,7 +189,7 @@ public class Radar extends Thread
 			}
 		}
 			
-		/* Compara, en caso de existir mas de dos misiles defensivos, si dos de estos chocaron entre si */
+		/* Compara, en caso de existir mas de dos misiles defensivos, si dos de estos chocaron entre si 
 		if(listaMisilesDefensivos.size() > 1)
 		{
 			for(i = 0; i < listaMisilesDefensivos.size(); i++)
@@ -200,12 +200,12 @@ public class Radar extends Thread
 					misil2 = listaMisilesDefensivos.get(j);
 				
 					/* Si las posiciones de ambos misiles se encuentran a una distancia igual o menor a la 'distanciaMinima', se eliminan 
-					 * y se sigue la comparacion con los demas misiles */
+					 * y se sigue la comparacion con los demas misiles 
 					if(misil1.getPosicion().compararVector(misil2.getPosicion(), this.distanciaMaxima))
 					{
 						System.out.println("Chocaron los misiles: Defensivo ---> " + misil1.getID() + " y Defensivo ---> "+  misil2.getID());
 					
-						/* En caso de haberse producido una colision entre dos misiles defensivos, se debe informar tal situacion al Servidor */
+						/* En caso de haberse producido una colision entre dos misiles defensivos, se debe informar tal situacion al Servidor 
 						ComunicarColision(misil1.getID(), misil2.getID());
 					
 						listaMisilesDefensivos.remove(i);
@@ -215,7 +215,7 @@ public class Radar extends Thread
 					}	
 				}
 			}
-		}
+		}*/
 	}
 	
 	private void ComunicarMisilesEnemigos()
@@ -236,7 +236,7 @@ public class Radar extends Thread
 	private void ComunicarColision(int ID1, int ID2)
 	{
 		int indice;
-		for(indice = 0; indice <= listaMisilesEnemigos.size(); indice++)
+		for(indice = 0; indice < listaMisilesEnemigos.size(); indice++)
 		{
 			if(listaMisilesEnemigos.get(indice).getID() == ID1 || listaMisilesEnemigos.get(indice).getID() == ID2)
 			{

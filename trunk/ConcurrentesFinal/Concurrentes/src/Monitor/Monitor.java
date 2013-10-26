@@ -26,9 +26,18 @@ public class Monitor {
         private int numero_base;
         final Lock lock = new ReentrantLock();
         final Condition recursoNoDisponible  = lock.newCondition();
-
+        private Matrix devNorOeste;
+    	private Matrix devSudOeste;
+    	private Matrix devSudEste ;
+    	private Matrix devNorEste;
         
         public Monitor(){       
+        	double [][] devolverNorOeste = {{0},{0},{0},{0},{1},{0},{0},{0}}, devolverSudOeste = {{0},{0},{0},{0},{0},{1},{0},{0}},
+        			devolverSudEste = {{0},{0},{0},{0},{0},{0},{1},{0}}, devolverNorEste = {{0},{0},{0},{0},{0},{0},{0},{1}};
+        	devNorOeste = new Matrix(devolverNorOeste);
+        	devSudOeste = new Matrix(devolverSudOeste);
+        	devSudEste = new Matrix(devolverSudEste);
+        	devNorEste = new Matrix(devolverNorEste);
                 marcadosM = new Matrix(marcados);
                 matriz = new Matrix(matrix);
                 norOeste = new Matrix(disparoNorOeste);
@@ -44,8 +53,8 @@ public class Monitor {
                 arregloBases[3] = new BaseMisil (new Vector(0,10000,0),3);
                 MisilEnemigo misilEnemigo=new MisilEnemigo(new Vector(-50000,50000,50000),new Vector(500,-500,-500),54);
                 MisilEnemigo misil1Enemigo=new MisilEnemigo(new Vector(50000,50000,50000),new Vector(-500,-500,-500),54);
-                try {
-                        BaseMisil base=obtenerRecurso(misil1Enemigo);
+               /* try {
+                        /*BaseMisil base=obtenerRecurso(misil1Enemigo);
                         BaseMisil base1=obtenerRecurso(misilEnemigo);
                         base.getPosicion().imprimir();
                         base1.getPosicion().imprimir();
@@ -58,11 +67,11 @@ public class Monitor {
                         System.out.println("Segunda devolucion recurso");
                         devolverRecurso(base1.getNumeroBase());
                         System.out.println("");
-                        marcadosM.show();
-                } catch (InterruptedException e) {
+                        marcadosM.show();*/
+             /*   } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
-                }
+                }*/
                 
                 
                 
@@ -126,7 +135,7 @@ public class Monitor {
                                 desrotar (numero_base);
                                 
                                 resultado.show();
-                                return base; 
+                                return new BaseMisil(new Vector(base.getPosicion().getX(),base.getPosicion().getY(),base.getPosicion().getZ()),base.getNumeroBase());
                         }
                         else {
                                 resultado = (matriz.times(sudOeste).transpose().plus(marcadosM));
@@ -138,7 +147,7 @@ public class Monitor {
                                         desrotar (numero_base);
                                         
                                         resultado.show();
-                                        return base; 
+                                        return new BaseMisil(new Vector(base.getPosicion().getX(),base.getPosicion().getY(),base.getPosicion().getZ()),base.getNumeroBase());
                                 }
                                 else {
                                         resultado = (matriz.times(sudEste).transpose().plus(marcadosM));
@@ -149,17 +158,17 @@ public class Monitor {
                                                 desrotar (numero_base);
                                                 
                                                 resultado.show();
-                                                return base; 
+                                                return new BaseMisil(new Vector(base.getPosicion().getX(),base.getPosicion().getY(),base.getPosicion().getZ()),base.getNumeroBase()); 
                                         }
                                         else {
-                                                resultado = (matriz.times(sudEste).transpose().plus(marcadosM));
+                                                resultado = (matriz.times(norEste).transpose().plus(marcadosM));
                                                 resultado.show();
                                                 base = elegirBase((int)base_devol.getValor(0,4));
                                                 marcadosM=resultado;
                                                 desrotar (numero_base);
                                                 
                                                 resultado.show();
-                                                return base;
+                                                return new BaseMisil(new Vector(base.getPosicion().getX(),base.getPosicion().getY(),base.getPosicion().getZ()),base.getNumeroBase());
                                         }
                                 }
                         
@@ -174,15 +183,10 @@ public class Monitor {
         
         // hacer un metodo devolver recurso
         public void devolverRecurso(int n_base) throws InterruptedException{
-                double [][] devolverNorOeste = {{0},{0},{0},{0},{1},{0},{0},{0}}, devolverSudOeste = {{0},{0},{0},{0},{0},{1},{0},{0}},
-                                        devolverSudEste = {{0},{0},{0},{0},{0},{0},{1},{0}}, devolverNorEste = {{0},{0},{0},{0},{0},{0},{0},{1}};
-                Matrix devNorOeste = new Matrix(devolverNorOeste);
-                Matrix devSudOeste = new Matrix(devolverSudOeste);
-                Matrix devSudEste = new Matrix(devolverSudEste);
-                Matrix devNorEste = new Matrix(devolverNorEste);
                 
                 lock.lock();
                 System.out.println(n_base);
+                System.out.println("devolvio base");
                 if(n_base == 0) 
                         {resultado = matriz.times(devNorOeste).transpose().plus(marcadosM);
                         marcadosM=resultado;}
